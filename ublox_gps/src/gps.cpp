@@ -537,6 +537,24 @@ bool Gps::setDynamicModel(uint8_t model) {
   return configure(msg);
 }
 
+bool Gps::setMinElev(int8_t min_elev){
+  RCLCPP_INFO(logger_, "Setting min elevation to %d degrees", min_elev);
+
+  ublox_msgs::msg::CfgNAV5 msg;
+  msg.min_elev = min_elev;
+  msg.mask = ublox_msgs::msg::CfgNAV5::MASK_MIN_EL;
+  return configure(msg);
+}
+
+bool Gps::setCnoThreshold(uint8_t threshold){
+  RCLCPP_INFO(logger_, "Setting C/N0 threshold to %d dBHz", threshold);
+
+  ublox_msgs::msg::CfgNAV5 msg;
+  msg.cno_thresh = threshold;
+  msg.mask = ublox_msgs::msg::CfgNAV5::MASK_CNO;
+  return configure(msg);
+}
+
 bool Gps::setFixMode(uint8_t mode) {
   RCLCPP_DEBUG(logger_, "Setting fix mode to %u", mode);
 

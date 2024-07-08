@@ -279,6 +279,20 @@ class Gps final {
   bool setDynamicModel(uint8_t model);
 
   /**
+  * @brief Set the minimum elevation for a GNSS satellite to be used.
+  * @param min_elev The minimum elevation angle in degrees.
+  * @return true on ACK, false on other conditions.
+  */
+  bool setMinElev(int8_t min_elev);
+
+  /**
+  * @brief Set the C/N0 threshold for deciding whether to attempt a fix.
+  * @param threshold The threshold in dBHz.
+  * @return true on ACK, false on other conditions.
+  */
+  bool setCnoThreshold(uint8_t threshold);
+
+  /**
    * @brief Set the device fix mode.
    * @param mode 2D only, 3D only or auto.
    * @return true on ACK, false on other conditions.
