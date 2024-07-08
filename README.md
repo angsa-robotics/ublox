@@ -45,7 +45,9 @@ The `ublox_gps` node supports the following parameters for all products and firm
     * `dat/shift`: [X-axis, Y-axis, Z-axis] shift [m]
     * `dat/rot`: [X, Y, Z] rotation [s]
     * `dat/scale`: scale change [ppm]
-
+### New parameters added in the Angsa fork:
+* min_elevation: Minimum Elevation for a GNSS satellite to be used in degrees, default value is 0.
+* cno_threshold: C/N0 threshold for deciding whether to attempt a fix in dBHz, default value is 20.
 ### For firmware version 6:
 * `nmea/set`: If true, the NMEA will be configured with the parameters below.
 * `nmea/version`: NMEA version. Must be set if `nmea/set` is true.
