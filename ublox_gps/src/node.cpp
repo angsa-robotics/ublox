@@ -471,6 +471,10 @@ void UbloxNode::getRosParams() {
 
   this->declare_parameter("diagnostic_period", kDiagnosticPeriod);
 
+  // Angsa fork parameters
+  this->declare_parameter("min_elevation", 0);
+  this->declare_parameter("cno_threshold", 20);
+
   // Create publishers based on parameters
   if (getRosBoolean(this, "publish.nav.status")) {
     nav_status_pub_ = this->create_publisher<ublox_msgs::msg::NavSTATUS>("navstatus", 1);
@@ -790,6 +794,16 @@ bool UbloxNode::configureUblox() {
       }
       if (getRosBoolean(this, "dat.set") && !gps_->configure(cfg_dat_)) {
         throw std::runtime_error("Failed to set user-defined datum.");
+      }
+      // Set Angsa fork parameters
+      int8_t min_elevation = this->get_parameter("min_elevation").get_value<int8_t>();
+      uint8_t cno_threshold = this->get_parameter("cno_threshold").get_value<uint8_t>();
+
+      if (!gps_->setMinElev(min_elevation)) {
+        throw std::runtime_error("Failed to set min elevation.");
+      }
+      if (!gps_->setCnoThreshold(cno_threshold)) {
+        throw std::runtime_error("Failed to set cno threshold." );
       }
       // Configure each component
       for (const std::shared_ptr<ComponentInterface> & component : components_) {

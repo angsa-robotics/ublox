@@ -538,7 +538,7 @@ bool Gps::setDynamicModel(uint8_t model) {
 }
 
 bool Gps::setMinElev(int8_t min_elev){
-  RCLCPP_INFO(logger_, "Setting min elev to %d degrees", min_elev);
+  RCLCPP_INFO(logger_, "Setting min elevation to %d degrees", min_elev);
 
   ublox_msgs::msg::CfgNAV5 msg;
   msg.min_elev = min_elev;
