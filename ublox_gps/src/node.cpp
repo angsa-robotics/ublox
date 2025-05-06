@@ -820,7 +820,8 @@ bool UbloxNode::configureUblox() {
       }
     }
   } catch (const std::exception& e) {
-    RCLCPP_FATAL(this->get_logger(), "Error configuring u-blox: %s", e.what());
+    RCLCPP_FATAL(this->get_logger(), "Error configuring u-blox: %s. shutting down ublox node...", e.what());
+    throw std::runtime_error("Error configuring u-blox");
     return false;
   }
   return true;
