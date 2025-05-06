@@ -825,7 +825,7 @@ bool UbloxNode::configureUblox() {
     return false;
   }
   return true;
-  }
+}
 
 void UbloxNode::configureInf() {
   ublox_msgs::msg::CfgINF msg;
